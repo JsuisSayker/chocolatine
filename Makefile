@@ -7,6 +7,10 @@
 
 SRC			=	main.c
 
+TEST		=	value_plus_one.c
+
+DIR_TEST =       $(addprefix src/, $(TEST))
+
 DIR_SRC =       $(addprefix src/, $(SRC))
 
 OBJ     =       $(DIR_SRC:.c=.o)
@@ -36,7 +40,7 @@ fclean: clean
 	rm -f $(NAME)
 
 unit_tests:	re
-		gcc -o units_tests $(SRC) tests/my_tests.c $(CPPFLAGS)\
+		gcc -o units_tests $(DIR_TEST) tests/my_tests.c $(CPPFLAGS)\
 		--coverage -lcriterion
 
 tests_run:	unit_tests
