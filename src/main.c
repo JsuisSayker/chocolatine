@@ -1,59 +1,12 @@
-
+/*
 ** EPITECH PROJECT, 2023
 ** main
-** File description:          
+** File description:
 ** main
 */
 
 int main()
-{    
-    r
+{   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    eturn 0;
+    return 0;
 }
