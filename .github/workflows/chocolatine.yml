@@ -20,33 +20,22 @@ jobs:
 
       - name: Run coding-style
         run: check.sh . /tmp
-      
-      - name: Display banana report
-        run: cat /tmp/coding-style-reports.log
 
       - name: Create annotation for coding-style errors
         run: |
           input=/tmp/coding-style-reports.log
           while IFS= read -r -a line; do
             fields=($(printf "%s" "$line"|cut -d':' --output-delimiter=' ' -f1-))
-            echo ${fields[0]}
-            echo ${fields[1]}
-            echo ${fields[2]}
-            echo ${fields[3]}
-            echo ${fields[4]}
+            echo "::title=${fields[2]},error file=${fields[0]},line=${fields[1]}::${fields[3]}"
           done < $input
-          echo "::title=${fields[2]},error file=${fields[0]},line=${fields[1]}::${fields[3]}"
 
       - name: Report banana result
         run: |
-          NB_ERROR=$(cat coding-style-reports.log | wc -l)
+          NB_ERROR=$(cat /tmp/coding-style-reports.log | wc -l)
           if [ $NB_ERROR -gt 0 ]; then
-            ERRORS=$(cat coding-style-reports.log);
-            echo "Banana found $NB_ERROR error(s)"
-            echo "$ERRORS"
+            ERRORS=$(cat /tmp/coding-style-reports.log);
             exit 1
           fi
-          echo "Everything is good ! Keep on coding !"
           exit 0
 
 
